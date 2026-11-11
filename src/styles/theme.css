@@ -1,0 +1,89 @@
+/**
+ * Hand-written project theme, semantic mappings, custom utilities, and motion rules.
+ *
+ * Imported after `tokens.css` so all `--alias-*` and `@theme` variables are available.
+ */
+
+:root,
+.light,
+.dark {
+  --background: var(--alias-surface-default);
+  --foreground: var(--alias-text-primary);
+  --card: var(--alias-surface-elevated);
+  --card-foreground: var(--alias-text-primary);
+  --muted: var(--alias-surface-subtle);
+  --muted-foreground: var(--alias-text-muted);
+  --border: var(--alias-border-default);
+  --input: var(--alias-border-strong);
+  --ring: var(--alias-action-accent);
+}
+
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    border-color: var(--alias-border-default);
+  }
+
+  html {
+    font-family: var(--font-sans);
+    background-color: var(--alias-surface-default);
+    color: var(--alias-text-primary);
+    scroll-behavior: smooth;
+    text-size-adjust: 100%;
+  }
+
+  body {
+    margin: 0;
+    min-height: 100svh;
+    background-color: var(--alias-surface-default);
+    color: var(--alias-text-primary);
+    font-size: var(--text-body-md);
+    line-height: var(--text-body-md--line-height);
+    overflow-x: clip;
+  }
+
+  /* Accessible keyboard focus ring */
+  :focus-visible {
+    outline: 2px solid var(--alias-action-accent);
+    outline-offset: 2px;
+  }
+}
+
+/* Sub-pixel 0.5px border utility for high-DPI displays */
+@utility border-hairline {
+  border-width: 0.5px;
+}
+
+/* Placeholder cross-hatch pattern matching M.Group wireframe illustration boxes */
+@utility bg-wireframe-placeholder {
+  background:
+    linear-gradient(
+      to top right,
+      transparent calc(50% - 0.5px),
+      var(--alias-border-default) calc(50% - 0.5px),
+      var(--alias-border-default) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    linear-gradient(
+      to bottom right,
+      transparent calc(50% - 0.5px),
+      var(--alias-border-default) calc(50% - 0.5px),
+      var(--alias-border-default) calc(50% + 0.5px),
+      transparent calc(50% + 0.5px)
+    ),
+    var(--alias-surface-muted);
+}
+
+/* Mandatory reduced-motion compliance (WCAG 2.3.3) */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

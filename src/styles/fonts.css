@@ -1,0 +1,24 @@
+/**
+ * Self-hosted font configuration and metric-adjusted fallback font.
+ *
+ * Uses @fontsource-variable/inter (bundled locally, zero external network requests)
+ * along with an Arial fallback tuned to match Inter glyph metrics and prevent CLS.
+ */
+@import '@fontsource-variable/inter';
+
+@font-face {
+  font-family: 'Inter Fallback';
+  src: local('Arial'), local('Helvetica Neue'), local('sans-serif');
+  size-adjust: 107%;
+  ascent-override: 90%;
+  descent-override: 22%;
+  line-gap-override: 0%;
+}
+
+:root {
+  font-optical-sizing: auto;
+  font-kerning: normal;
+  font-synthesis: none;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
